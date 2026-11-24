@@ -1,0 +1,1 @@
+import{j as s}from"./index-D_npUhrX.js";function t({children:r,hoverable:o=!1,className:a="",...e}){return s.jsx("div",{className:`bg-white rounded-2xl border border-gray-200 shadow-xs ${o?"hover:shadow-md hover:border-gray-300 transition-all duration-200":""} ${a}`,...e,children:r})}export{t as C};
