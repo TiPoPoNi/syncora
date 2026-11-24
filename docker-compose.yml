@@ -1,0 +1,28 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: prs-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: prs_db
+      POSTGRES_USER: prs_user
+      POSTGRES_PASSWORD: prs_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  ai-service:
+    build:
+      context: ./ai-service
+      dockerfile: Dockerfile
+    container_name: prs-ai-service
+    restart: unless-stopped
+    environment:
+      - AI_PROVIDER=mock
+      - AI_SERVICE_PORT=8000
+    ports:
+      - "8000:8000"
+
+volumes:
+  postgres_data:

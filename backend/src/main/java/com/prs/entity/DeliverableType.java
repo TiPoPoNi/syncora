@@ -1,0 +1,14 @@
+package com.prs.entity;
+
+public enum DeliverableType {
+    DESIGN_SPECIFICATION,
+    UI_PROTOTYPE,
+    TECHNICAL_DOCUMENT,
+    MATERIAL_DELIVERY,
+    PROJECT_REPORT,
+    TESTING_REPORT,
+    SOURCE_CODE_PACKAGE,
+    FINAL_INSTALLATION,
+    CLIENT_HANDOVER,
+    OTHER
+}

@@ -1,0 +1,49 @@
+spring:
+  application:
+    name: syncora
+  datasource:
+    url: jdbc:h2:mem:prs_db;DB_CLOSE_DELAY=-1;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.H2Dialect
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+
+server:
+  port: 8080
+
+app:
+  cors:
+    allowed-origin: ${CORS_ALLOWED_ORIGIN:http://localhost:5173}
+  jwt:
+    secret: ${APP_JWT_SECRET:${JWT_SECRET:9a4f2c8d3b7a1e6f45c8a0b3f267d8b1d4e6f3c8a9d2b5f8e3a9c8b5f6v8a3d9}}
+    expirationMs: 86400000
+  auth:
+    dev-mode: ${AUTH_DEV_MODE:true}
+  integrations:
+    calendar:
+      google:
+        clientId: ${GOOGLE_CALENDAR_CLIENT_ID:}
+        clientSecret: ${GOOGLE_CALENDAR_CLIENT_SECRET:}
+        redirectUri: ${GOOGLE_CALENDAR_REDIRECT_URI:http://localhost:8080/api/integrations/calendars/GOOGLE_CALENDAR/callback}
+      outlook:
+        clientId: ${OUTLOOK_CALENDAR_CLIENT_ID:}
+        clientSecret: ${OUTLOOK_CALENDAR_CLIENT_SECRET:}
+        redirectUri: ${OUTLOOK_CALENDAR_REDIRECT_URI:http://localhost:8080/api/integrations/calendars/OUTLOOK_CALENDAR/callback}
+    webhooks:
+      timeoutMs: ${WEBHOOK_TIMEOUT_MS:5000}
+      maxRetries: ${WEBHOOK_MAX_RETRIES:3}
+      allowPrivateNetwork: ${WEBHOOK_ALLOW_PRIVATE_NETWORK:false}
